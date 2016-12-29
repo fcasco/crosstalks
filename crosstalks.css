@@ -1,0 +1,14 @@
+body {
+    background-color: silver;
+    color: white;
+    font-family: sans-serif;
+}
+
+.template {
+    display: none;
+}
+
+.session {
+    border: 0.1rem solid gray;
+    padding: 1rem;
+}

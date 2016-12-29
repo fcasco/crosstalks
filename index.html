@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>CrossTalks :.</title>
+        <link rel="stylesheet" href="crosstalks.css">
+    </head>
+    <body>
+        <h1>CrossTalks</h1>
+
+        <form action="/session/new" method="post">
+            <label for="session_name">Name:</label>
+            <input type="text" name="session_name">
+
+            <label for="talks_duration">Talks duration:</label>
+            <input type="number" name="talks_duration">
+
+            <label for="session_start">Start time:</label>
+            <input type="time" name="session_start">
+
+            <button type="submit" class="new_session">New Session</button>
+        </form>
+
+        <div class="session template">
+            <h2 class="name"></h2>
+            <p>Talks duration: <span class="talks_duration"></span>mins.
+            </p>
+
+            <h2 class="talks">Talks:</h2>
+            <form action="/talk/new" method="post">
+                <label for="talk_name">Name:</label>
+                <input type="text" name="talk_name">
+
+                <label for="talk_speaker">Speaker:</label>
+                <input type="text" name="talk_speaker">
+
+                <label for="talk_url">URL:</label>
+                <input type="url" name="talk_url">
+
+                <label for="talk_duration">Duration:</label>
+                <input type="number" name="talk_duration">
+
+                <label for="talk_position">Position:</label>
+                <input type="number" name="talk_position">
+
+                <button type="submit">+</button>
+            </form>
+
+            <ol class="talks">
+                <li class="template">
+                    <span class="talk_name"></span>
+                    by <span class="talk_speaker"></span>
+                    (<span class="talk_duration"></span>)
+                </li>
+            </ol>
+
+            <select name="sort_by">
+                <option name="none" selected="selected">-</option>
+                <option name="name">Name</option>
+                <option name="speaker">Speaker</option>
+                <option name="random">Random</option>
+            </select>
+        </div>
+
+        <script src="crosstalks.js"></script>
+    </body>
+</html>
