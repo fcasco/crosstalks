@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="crosstalks.css">
     </head>
     <body>
-        <h1>CrossTalks</h1>
+        <h1><a href="/">CrossTalks</a></h1>
 
         <form action="/session/new" method="post">
             <label for="session_name">Name:</label>
@@ -24,7 +24,7 @@
             <p>Talks duration: <span class="talks_duration"></span>mins.
             </p>
 
-            <h2 class="talks">Talks:</h2>
+            <h3 class="talks">Talks:</h3>
             <form action="/talk/new" method="post">
                 <label for="talk_name">Name:</label>
                 <input type="text" name="talk_name">
@@ -41,23 +41,30 @@
                 <label for="talk_position">Position:</label>
                 <input type="number" name="talk_position">
 
-                <button type="submit">+</button>
+                <button type="submit">Add</button>
             </form>
 
             <ol class="talks">
-                <li class="template">
+                <li class="talk template">
                     <span class="talk_name"></span>
                     by <span class="talk_speaker"></span>
                     (<span class="talk_duration"></span>)
                 </li>
             </ol>
 
-            <select name="sort_by">
-                <option name="none" selected="selected">-</option>
-                <option name="name">Name</option>
-                <option name="speaker">Speaker</option>
-                <option name="random">Random</option>
-            </select>
+            <form action="/session/sort" method="post">
+                <select name="sort_by">
+                    <option name="none" selected="selected">-</option>
+                    <option name="name">Name</option>
+                    <option name="speaker">Speaker</option>
+                    <option name="random">Random</option>
+                </select>
+                <button type="submit">Sort</button>
+            </form>
+
+            <form action="/session/start" method="post">
+                <button type="submit">Start</button>
+            </form>
         </div>
 
         <script src="crosstalks.js"></script>
