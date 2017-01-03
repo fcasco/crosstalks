@@ -6,15 +6,28 @@ function reset_talk_form(talk_form) {
 
     const talks_count = crosstalks.session.tag.querySelector('ol.talks').childElementCount;
 
-    talk_form.querySelector('[name="talk_name"]').value = '';
     talk_form.querySelector('[name="talk_speaker"]').value = '';
+    talk_form.querySelector('[name="talk_name"]').value = '';
     talk_form.querySelector('[name="talk_url"]').value = '';
     talk_form.querySelector('[name="talk_duration"]').value = crosstalks.session.talks_duration;
     talk_form.querySelector('[name="talk_position"]').value = talks_count;
 
-    talk_form.querySelector('[name="talk_name"]').focus();
+    talk_form.querySelector('[name="talk_speaker"]').focus();
 }
 
+
+function remove_talk(evt) {
+    // Removes the talk from the session
+    const talk_tag = evt.target.parentElement;
+    const talk_name = talk_tag.querySelector('.talk_name').innerHTML;
+    const talk_speaker = talk_tag.querySelector('.talk_speaker').innerHTML;
+
+    talk_tag.remove();
+
+    crosstalks.session.talks = crosstalks.session.talks.filter(function (x) {
+        return ! (x.name === talk_name && x.speaker === talk_speaker);
+    });
+}
 
 function create_talk(evt) {
     // Create a new talk for a session
@@ -24,16 +37,18 @@ function create_talk(evt) {
     const talk_template = document.querySelector('.talk.template');
 
     new_talk.form = evt.target.form;
-    new_talk.name = new_talk.form.querySelector('[name="talk_name"]').value;
     new_talk.speaker = new_talk.form.querySelector('[name="talk_speaker"]').value;
+    new_talk.name = new_talk.form.querySelector('[name="talk_name"]').value;
     new_talk.url = new_talk.form.querySelector('[name="talk_url"]').value;
     new_talk.duration = new_talk.form.querySelector('[name="talk_duration"]').value;
     new_talk.position = new_talk.form.querySelector('[name="talk_position"]').value;
 
     new_talk.tag = talk_template.cloneNode(true);
-    new_talk.tag.querySelector('.talk_name').innerHTML = new_talk.name;
     new_talk.tag.querySelector('.talk_speaker').innerHTML = new_talk.speaker;
+    new_talk.tag.querySelector('.talk_name').innerHTML = new_talk.name;
+    new_talk.tag.querySelector('.talk_name').href = new_talk.url;
     new_talk.tag.querySelector('.talk_duration').innerHTML = new_talk.duration;
+    new_talk.tag.querySelector('button.remove').addEventListener('click', remove_talk);
     new_talk.tag.classList.remove('template');
 
     crosstalks.session.tag.querySelector('ol.talks').appendChild(new_talk.tag);
@@ -41,7 +56,6 @@ function create_talk(evt) {
     crosstalks.session.talks.push(new_talk);
 
     reset_talk_form(crosstalks.session.tag.querySelector('[action="/talk/new"]'));
-    crosstalks.session.tag.querySelector('[name="talk_name"]').focus();
 }
 
 
@@ -54,7 +68,6 @@ function create_session(evt) {
     new_session.form = evt.target.form;
     new_session.name = new_session.form.querySelector('[name="session_name"]').value;
     new_session.talks_duration = new_session.form.querySelector('[name="talks_duration"]').value || 0;
-    new_session.start = new_session.form.querySelector('[name="session_start"]').value;
 
     new_session.tag = session_template.cloneNode(true);
     new_session.tag.querySelector('[action="/talk/new"] [type="submit"]')
@@ -73,6 +86,11 @@ function create_session(evt) {
     reset_talk_form(new_session.tag.querySelector('[action="/talk/new"]'));
 
     document.querySelector('[action="/session/new"]').classList.add('collapsed');
+}
+
+
+function sort_talks(criteria) {
+    // Sorts the talks by given criteria
 }
 
 

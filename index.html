@@ -8,13 +8,10 @@
 
         <form action="/session/new" method="post">
             <label for="session_name">Name:</label>
-            <input type="text" name="session_name">
+            <input type="text" name="session_name" autofocus>
 
             <label for="talks_duration">Talks duration:</label>
             <input type="number" name="talks_duration">
-
-            <label for="session_start">Start time:</label>
-            <input type="time" name="session_start">
 
             <button type="submit" class="new_session">New Session</button>
         </form>
@@ -26,11 +23,11 @@
 
             <h3 class="talks">Talks:</h3>
             <form action="/talk/new" method="post">
-                <label for="talk_name">Name:</label>
-                <input type="text" name="talk_name">
-
                 <label for="talk_speaker">Speaker:</label>
                 <input type="text" name="talk_speaker">
+
+                <label for="talk_name">Talk Name:</label>
+                <input type="text" name="talk_name">
 
                 <label for="talk_url">URL:</label>
                 <input type="url" name="talk_url">
@@ -46,9 +43,8 @@
 
             <ol class="talks">
                 <li class="talk template">
-                    <span class="talk_name"></span>
-                    by <span class="talk_speaker"></span>
-                    (<span class="talk_duration"></span>)
+                    <span class="talk_speaker"></span>: "<a href="" class="talk_name" target="_blank"></a>" (<span class="talk_duration"></span> mins.)
+                    <button class="remove">x</button>
                 </li>
             </ol>
 
