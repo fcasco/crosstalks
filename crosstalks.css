@@ -157,3 +157,15 @@ a:visited {
     border-bottom: 0.1rem solid #226765;
     border-top: 0.1rem solid #226765;
 }
+
+.session ol.talks li {
+    padding: 0.5rem 1rem;
+}
+
+.session ol.talks .remove {
+    background-color: #226765;
+    border-color: #226765;
+    border-width: 0.15rem;
+    color: white;
+    padding: 0 0.4rem;
+}

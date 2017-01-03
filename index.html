@@ -50,10 +50,11 @@
 
             <form action="/session/sort" method="post">
                 <select name="sort_by">
-                    <option name="none" selected="selected">-</option>
-                    <option name="name">Name</option>
-                    <option name="speaker">Speaker</option>
-                    <option name="random">Random</option>
+                    <option selected="selected">-</option>
+                    <option value="name">Talk Name</option>
+                    <option value="speaker">Speaker</option>
+                    <option value="duration">Duration</option>
+                    <option value="random">Random</option>
                 </select>
                 <button type="submit">Sort</button>
             </form>
