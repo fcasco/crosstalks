@@ -82,7 +82,7 @@ crosstalks = (function main() {
             '-': function (a, b) { return 0; },
             'name': function (a, b) { return a.name > b.name ? 1 : -1; },
             'speaker': function (a, b) { return a.speaker > b.speaker ? 1 : -1; },
-            'duration': function (a, b) { return a.duration > b.duration ? 1 : -1; },
+            'duration': function (a, b) { return parseInt(a.duration, 10) > parseInt(b.duration, 10) ? 1 : -1; },
             'random': function (a, b) { return Math.random() > 0.5 ? 1 : -1; }
         }
 
@@ -100,8 +100,10 @@ crosstalks = (function main() {
         // Create a new session of talks
         evt.preventDefault();
 
+        const new_session_form = document.querySelector('[action="/session/new"]');
         const new_session = {'talks': []};
         const session_template = document.querySelector('.session.template');
+
         new_session.form = evt.target.form;
         new_session.name = new_session.form.querySelector('[name="session_name"]').value;
         new_session.talks_duration = new_session.form.querySelector('[name="talks_duration"]').value || 0;
@@ -117,7 +119,9 @@ crosstalks = (function main() {
         new_session.tag.querySelector('[action="/session/sort"] [type="submit"]')
                       .addEventListener('click', sort_talks);
 
-        document.body.appendChild(new_session.tag);
+        new_session_form.parentNode.insertBefore(new_session.tag, new_session_form.nextSibling);
+        new_session_form.classList.add('collapsed');
+        // document.body.appendChild(new_session.tag);
 
         new_session.tag.querySelector('[name="talk_name"]').focus();
 
@@ -125,7 +129,7 @@ crosstalks = (function main() {
 
         reset_talk_form(new_session.tag.querySelector('[action="/talk/new"]'));
 
-        document.querySelector('[action="/session/new"]').classList.add('collapsed');
+        //document.querySelector('[action="/session/new"]').classList.add('collapsed');
 
     }
 
