@@ -6,22 +6,15 @@
     <body>
         <h1><a href="/">CrossTalks</a></h1>
 
-        <form action="/session/new" method="post">
-            <label for="session_name">Name:</label>
-            <input type="text" name="session_name" autofocus>
+        <div class="talks">
+        <h2>Talks:</h2>
+            <ol>
+                <li class="talk template">
+                    <span class="talk_speaker"></span>: "<a href="" class="talk_name" target="_blank"></a>" (<span class="talk_duration"></span> mins.)
+                    <button class="remove">x</button>
+                </li>
+            </ol>
 
-            <label for="talks_duration">Talks duration:</label>
-            <input type="number" name="talks_duration">
-
-            <button type="submit" class="new_session">New Session</button>
-        </form>
-
-        <div class="session template">
-            <h2 class="name"></h2>
-            <p>Talks duration: <span class="talks_duration"></span>mins.
-            </p>
-
-            <h3 class="talks">Talks:</h3>
             <form action="/talk/new" method="post">
                 <label for="talk_speaker">Speaker:</label>
                 <input type="text" name="talk_speaker">
@@ -29,26 +22,17 @@
                 <label for="talk_name">Talk Name:</label>
                 <input type="text" name="talk_name">
 
-                <label for="talk_url">URL:</label>
-                <input type="url" name="talk_url">
-
                 <label for="talk_duration">Duration:</label>
                 <input type="number" name="talk_duration">
 
-                <label for="talk_position">Position:</label>
-                <input type="number" name="talk_position">
+                <label for="talk_url">URL:</label>
+                <input type="url" name="talk_url">
 
                 <button type="submit">Add</button>
             </form>
 
-            <ol class="talks">
-                <li class="talk template">
-                    <span class="talk_speaker"></span>: "<a href="" class="talk_name" target="_blank"></a>" (<span class="talk_duration"></span> mins.)
-                    <button class="remove">x</button>
-                </li>
-            </ol>
-
-            <form action="/session/sort" method="post">
+            <form action="/talks/sort" method="post">
+                <label for="sort_by">Sort by</label>
                 <select name="sort_by">
                     <option selected="selected">-</option>
                     <option value="name">Talk Name</option>
@@ -59,9 +43,24 @@
                 <button type="submit">Sort</button>
             </form>
 
-            <form action="/session/start" method="post">
-                <button type="submit">Start</button>
+            <form action="/talks/start" method="post">
+                <button type="submit">Start first talk</button>
             </form>
+        </div>
+
+        <div class="current_talk template">
+            <h3 class="talk_name"><a href="#">Talk Name</a></h3>
+            <p class="speaker_name">Speaker Name</p>
+            <div class="timer">
+                <p class="timer_value">10:00</p>
+                <p class="timer_description">minutes left</p>
+                <p class="timer_description overtime">minutes overtime</p>
+            </div>
+            <ol class="controls">
+                <li><form method="post" action="/talk/play"><button type="submit">play</button></form></li>
+                <li><form method="post" action="/talk/stop" class="hidden"><button type="submit">stop</button></form></li>
+                <li><form method="post" action="/talk/next" class="hidden"><button type="submit">next</button></form></li>
+            </ol>
         </div>
 
         <footer>

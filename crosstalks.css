@@ -33,17 +33,14 @@ h1 {
 }
 
     h1 a,
-    h1 a:visited {
+    h1 a:visited,
+    h2 a,
+    h2 a:visited,
+    h3 a,
+    h3 a:visited {
         text-decoration: none;
         color: inherit;
     }
-
-form {
-    border: 0.2rem solid #226765;
-    border-radius: 1rem;
-    margin: 1rem;
-    padding: 1rem;
-}
 
 input {
     border: 0.1rem solid #226765;
@@ -97,79 +94,173 @@ a:visited {
     padding: 0;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .template {
     display: none;
 }
 
-.session {
+.talks {
     border: 0.2rem solid #226765;
     border-radius: 1rem;
-    margin: 1rem;
+    margin: 1rem 5%;
+    padding: 0 0 1rem 0;
+    float: left;
+    width: 90%;
+}
+
+    .talks h2 {
+        background-color: #226765;
+        border-top-left-radius: 0.4rem;
+        border-top-right-radius: 0.4rem;
+        color: white;
+        font-size: 1.8rem;
+        font-weight: bold;
+        padding: 0.2rem 1rem;
+        margin-top: 0;
+    }
+
+    .talks span.talk_speaker {
+        font-weight: bold;
+    }
+
+    .talks [action="/talk/new"] {
+        margin: 1rem auto 2rem;
+        text-align: center;
+        width: 90%;
+    }
+
+        .talks [action="/talk/new"] input {
+            margin-right: 1rem;
+        }
+
+        .talks [action="/talk/new"] [name="talk_duration"] {
+            text-align: right;
+            width: 3rem;
+        }
+
+        .talks [action="/talk/new"] [name="talk_position"] {
+            text-align: right;
+            width: 3rem;
+        }
+
+    .talks [action="/talks/sort"] {
+        display: inline-block;
+        float: left;
+        margin: 0 1rem;
+    }
+
+        .talks [action="/talks/sort"] [type="submit"] {
+            background-color: #289995;
+            border-color: #226765;
+        }
+
+
+    .talks > ol {
+        border-bottom: 0.1rem solid #226765;
+        border-top: 0.1rem solid #226765;
+    }
+
+        .talks > ol li {
+            padding: 0.5rem 1rem;
+        }
+
+        .talks > ol .remove {
+            background-color: #226765;
+            border-color: #226765;
+            border-width: 0.15rem;
+            color: white;
+            padding: 0 0.4rem;
+        }
+
+    .talks [action="/talks/start"] {
+        display: inline-block;
+        float: right;
+        margin: 0 1rem;
+    }
+
+.current_talk {
+    border: 0.2rem solid #226765;
+    border-radius: 1rem;
+    float: left;
+    margin: 1rem 5%;
     padding: 0;
+    width: 90%;
 }
 
-.session h2 {
-    background-color: #226765;
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
-    color: white;
-    font-size: 1.8rem;
-    font-weight: bold;
-    padding: 0.2rem 1rem;
-    margin-top: 0;
-}
+    .current_talk h3 {
+        background-color: #226765;
+        border-top-left-radius: 0.4rem;
+        border-top-right-radius: 0.4rem;
+        color: white;
+        letter-spacing: 0.2rem;
+        margin-top: 0;
+        padding: 1rem;
+        text-align: center;
+    }
 
-.session h3 {
-    background-color: #289995;
-    color: white;
-    padding: 0.3rem 1rem 0.1rem;
-}
+        .current_talk h3 ~ p {
+            text-align: center;
+        }
 
-.session form {
-    border-width: 0;
-    text-align: right;
-}
+    .current_talk .timer_value {
+        text-align: center;
+        font-size: 4rem;
+        font-weight: bold;
+        margin: 0;
+    }
 
-.session span.talk_speaker {
-    font-weight: bold;
-}
+        .current_talk.warning .timer_value {
+            color: #AA6B39;
+        }
 
-.session [action="/session/sort"] [type="submit"] {
-    background-color: #289995;
-    border-color: #226765;
-}
+        .current_talk.overtime .timer_value {
+            color: #583B24;
+        }
 
-.session [action="/talk/new"] input {
-    margin-right: 1rem;
-}
+    .current_talk .timer_description {
+        margin-top: 0;
+        text-align: center;
+    }
 
-.session [action="/talk/new"] [name="talk_duration"] {
-    text-align: right;
-    width: 3rem;
-}
+    .current_talk .timer_description.overtime {
+        color: #583B24;
+        display: none;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
 
-.session [action="/talk/new"] [name="talk_position"] {
-    text-align: right;
-    width: 3rem;
-}
+    .current_talk.overtime .timer_description {
+        display: none;
+    }
 
-.session ol.talks {
-    border-bottom: 0.1rem solid #226765;
-    border-top: 0.1rem solid #226765;
-}
+    .current_talk.overtime .timer_description.overtime {
+        display: block;
+    }
 
-.session ol.talks li {
-    padding: 0.5rem 1rem;
-}
+    .current_talk .controls {
+        margin: 1rem 0;
+        padding: 0;
+        text-align: center;
+    }
 
-.session ol.talks .remove {
-    background-color: #226765;
-    border-color: #226765;
-    border-width: 0.15rem;
-    color: white;
-    padding: 0 0.4rem;
-}
+    .current_talk .controls li {
+        display: inline-block;
+    }
 
-footer {
-    clear: both;
-}
+    .current_talk .controls li form {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .current_talk .controls li form button {
+        padding: 
+        width: 6rem;
+    }
+
+    footer {
+        clear: both;
+    }
